@@ -166,13 +166,6 @@ for (let questions = 1; questions <= 20; questions++) {
 }
 
 console.log(`\n Final Score: ${score}`);}
-}
-
-            
-        
-
-
-
 // // Hard - Up to 3 digit add, sub. Mult, div, mod - Num1 2 digit, Num2 1 digit
     else if(difficulty1 === 3){
         console.log(`You have chosen Medium`)
@@ -284,56 +277,64 @@ for (let questions = 1; questions <= 20; questions++) {
 console.log(`\n Final Score: ${score}`);}
 
 
+}
+
 
 
 // // Three - out
     else if(gamemmode === 2){
     console.log(`You have chosen Three-Out`)
-    outs = 0
+    outs = 3
     let difficulty2 = Number(prompt(`Press 1 for Easy\nPress 2 for Medium\nPress 3 for Hard\n`))
 
     //Easy - Only addition and subtraction numbers 1-9
     if(difficulty2 === 1){
         console.log(`You have chosen easy mode`)
-        while(outs < 3){
+        for (let questions = 1; questions <= 20; questions++){
+        while(outs > 0){
             // Random numbers between 1 and 9
     let num1 = Math.floor(Math.random() * 9) + 1;
     let num2 = Math.floor(Math.random() * 9) + 1;
 
     // 1 = addition, 2 = subtraction
     let operation = Math.floor(Math.random() * 2) + 1;
-
+            // Addition
     if (operation === 1) {
         let answer = prompt(`${questions}) ${num1} + ${num2} = ? (Type any word to skip): `);
         let numberAnswer = Number(answer);
 
         if (isNaN(numberAnswer)) {
-            console.log(`Skipped. Your score: ${score} + 0 = ${score}\n`);
+            outs--;
+            console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+
         } else if (numberAnswer === num1 + num2) {
-            console.log(`Correct! Your score: ${score} + 10 = ${score + 10}\n`);
+            console.log(`Correct! Your score: ${score} + 10 = ${score + 10}. You have ${outs} chance(s) left.\n`);
             score += 10;
         } else {
-            console.log(`Wrong! Your score: ${score} - 5 = ${score - 5}\n`);
-            score -= 5;
+            outs--;
+            console.log(`Wrong! Your score: ${score} + 0 = ${score}\. You have ${outs} chance(s) left.`);
         }
             console.log(`----------------------------\n`);
 
+            //Subtraction
     } else if (operation === 2) {
         let answer = prompt(`${questions}) ${num1} - ${num2} = ? (Type any word to skip): `);
         let numberAnswer = Number(answer);
 
-        if (isNaN(numberAnswer)) {
-            console.log(`You've chosen skip. Your score: ${score} + 0 = ${score}\n`);
+       if (isNaN(numberAnswer)) {
+            outs--;
+            console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+
         } else if (numberAnswer === num1 - num2) {
             console.log(`Correct! Your score: ${score} + 10 = ${score + 10}\n`);
             score += 10;
         } else {
-            console.log(`Wrong! Your score: ${score} - 5 = ${score - 5}\n`);
-            score -= 5;
+            outs--;
+            console.log(`Wrong! Your score: ${score} + 0 = ${score}\. You have ${outs} chance(s) left.`);
         }
             console.log(`----------------------------\n`);
-
     }
+}
 }
 
 console.log(`\n Final Score: ${score}`);
@@ -348,6 +349,7 @@ console.log(`\n Final Score: ${score}`);
     else if(difficulty2 === 3){
         console.log(`You have chosen Hard`)
     }
+    // This else statement is if they do not choose Easy, Medium, or Hard difficulty
     else{
         console.log(`That is not a valid option. Please restart.`)
     }
