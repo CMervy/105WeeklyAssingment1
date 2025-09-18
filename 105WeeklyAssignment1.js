@@ -20,12 +20,17 @@ if(gamemmode === 1){
             Number(operation = (int(Math.random)()* 2) + 1)
             // if operation === 1 addition
             if(operation === 1){
-                let answer = Number(prompt(questions + `) ${num1} + ${num2}`))
+                let answer = Number(prompt(questions + `) ${num1} + ${num2} \n You may also choose to
+                    skip by typing any word`))
+                }
                 //Increases score by 10 if correct, subtracts 5 if wrong
                 if(answer === num1 + num2){
+                    console.log(`Correct! Your score: ${score} + 10 = ${score + 10}`)
                     score+=10
                 }
+                // Need to figure out how to skip a question (Use isNan)
                 else{
+                    console.log(`Wrong! Your score: ${score} - 5 = ${score - 5}`)
                     score-=5
                 }
             }
