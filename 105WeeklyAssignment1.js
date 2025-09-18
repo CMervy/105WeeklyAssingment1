@@ -290,8 +290,9 @@ console.log(`\n Final Score: ${score}`);}
     //Easy - Only addition and subtraction numbers 1-9
     if(difficulty2 === 1){
         console.log(`You have chosen easy mode`)
-        for (let questions = 1; questions <= 20; questions++){
+        questions = 0
         while(outs > 0){
+            questions++
             // Random numbers between 1 and 9
     let num1 = Math.floor(Math.random() * 9) + 1;
     let num2 = Math.floor(Math.random() * 9) + 1;
@@ -326,7 +327,7 @@ console.log(`\n Final Score: ${score}`);}
             console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
 
         } else if (numberAnswer === num1 - num2) {
-            console.log(`Correct! Your score: ${score} + 10 = ${score + 10}\n`);
+            console.log(`Correct! Your score: ${score} + 10 = ${score + 10}. You have ${outs} chance(s) left.\n`);
             score += 10;
         } else {
             outs--;
@@ -336,25 +337,279 @@ console.log(`\n Final Score: ${score}`);}
     }
 }
 }
-
+console.log(`That is 3 strikes, Game Over!`)
 console.log(`\n Final Score: ${score}`);
 
-}
+
+    //Medium
+   if (difficulty2 === 2) {
+    console.log(`You have chosen Medium mode`);
+    let questions = 0;
+    let outs = 3;
+
+    while (outs > 0) {
+        questions++;
+
+        // 1 = addition, 2 = subtraction, 3 = multiplication, 4 = division, 5 = modulus
+        let operation = Math.floor(Math.random() * 5) + 1;
+        let num1, num2;
+
+        if (operation === 1 || operation === 2) {
+            num1 = Math.floor(Math.random() * 99) + 1;
+            num2 = Math.floor(Math.random() * 99) + 1;
+        } else {
+            num1 = Math.floor(Math.random() * 9) + 1;
+            num2 = Math.floor(Math.random() * 9) + 1;
         }
+
+        // Addition
+        if (operation === 1) {
+            let answer = prompt(`${questions}) ${num1} + ${num2} = ? (Type any word to skip): `);
+            let numberAnswer = Number(answer);
+
+            if (isNaN(numberAnswer)) {
+                outs--;
+                console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            } else if (numberAnswer === num1 + num2) {
+                console.log(`Correct! Your score: ${score} + 10 = ${score + 10}. You have ${outs} chance(s) left.\n`);
+                score += 10;
+            } else {
+                outs--;
+                console.log(`Wrong! Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            }
+
+            console.log(`----------------------------\n`);
+        }
+
+        // Subtraction
+        else if (operation === 2) {
+            let answer = prompt(`${questions}) ${num1} - ${num2} = ? (Type any word to skip): `);
+            let numberAnswer = Number(answer);
+
+            if (isNaN(numberAnswer)) {
+                outs--;
+                console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            } else if (numberAnswer === num1 - num2) {
+                console.log(`Correct! Your score: ${score} + 10 = ${score + 10}. You have ${outs} chance(s) left.\n`);
+                score += 10;
+            } else {
+                outs--;
+                console.log(`Wrong! Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            }
+
+            console.log(`----------------------------\n`);
+        }
+
+        // Multiplication
+        else if (operation === 3) {
+            let answer = prompt(`${questions}) ${num1} * ${num2} = ? (Type any word to skip): `);
+            let numberAnswer = Number(answer);
+
+            if (isNaN(numberAnswer)) {
+                outs--;
+                console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            } else if (numberAnswer === num1 * num2) {
+                console.log(`Correct! Your score: ${score} + 10 = ${score + 10}. You have ${outs} chance(s) left.\n`);
+                score += 10;
+            } else {
+                outs--;
+                console.log(`Wrong! Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            }
+
+            console.log(`----------------------------\n`);
+        }
+
+        // Division
+         else if (operation === 4) {
+            let answer = prompt(`${questions}) ${num1} / ${num2} = ? (Type any word to skip): `);
+            let numberAnswer = Number(answer);
+
+            if (isNaN(numberAnswer)) {
+                outs--;
+                console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            } else if (numberAnswer === (num1 / num2)) { 
+                console.log(`Correct! Your score: ${score} + 10 = ${score + 10}. You have ${outs} chance(s) left.\n`);
+                score += 10;
+            } else {
+                outs--;
+                console.log(`Wrong! Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            }
+
+            console.log(`----------------------------\n`);
+        }
+
+        // Modulus
+        else if (operation === 5) {
+            // Ensure no divide by 0
+            num2 = Math.floor(Math.random() * 9) + 1;
+            num1 = Math.floor(Math.random() * 9) + 1;
+
+            let answer = prompt(`${questions}) ${num1} % ${num2} = ? (Type any word to skip): `);
+            let numberAnswer = Number(answer);
+
+            if (isNaN(numberAnswer)) {
+                outs--;
+                console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            } else if (numberAnswer === num1 % num2) {
+                console.log(`Correct! Your score: ${score} + 10 = ${score + 10}. You have ${outs} chance(s) left.\n`);
+                score += 10;
+            } else {
+                outs--;
+                console.log(`Wrong! Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            }
+
+            console.log(`----------------------------\n`);
+        }
+    }
+
+    console.log(`That is 3 strikes, Game Over!`);
+    console.log(`\nFinal Score: ${score}`);
+}
+
+
+
+        // Hard mode
+     if (difficulty2 === 3) {
+    console.log(`You have chosen Hard mode`);
+    let questions = 0;
+    let outs = 3;
+
+    while (outs > 0) {
+        questions++;
+
+        // 1 = addition, 2 = subtraction, 3 = multiplication, 4 = division, 5 = modulus
+        let operation = Math.floor(Math.random() * 5) + 1;
+        let num1, num2;
+
+        if (operation === 1 || operation === 2) {
+            num1 = Math.floor(Math.random() * 99) + 1;
+            num2 = Math.floor(Math.random() * 99) + 1;
+        } else {
+            num1 = Math.floor(Math.random() * 99) + 1;
+            num2 = Math.floor(Math.random() * 9) + 1;
+        }
+
+        // Addition
+        if (operation === 1) {
+            let answer = prompt(`${questions}) ${num1} + ${num2} = ? (Type any word to skip): `);
+            let numberAnswer = Number(answer);
+
+            if (isNaN(numberAnswer)) {
+                outs--;
+                console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            } else if (numberAnswer === num1 + num2) {
+                console.log(`Correct! Your score: ${score} + 10 = ${score + 10}. You have ${outs} chance(s) left.\n`);
+                score += 10;
+            } else {
+                outs--;
+                console.log(`Wrong! Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            }
+
+            console.log(`----------------------------\n`);
+        }
+
+        // Subtraction
+        else if (operation === 2) {
+            let answer = prompt(`${questions}) ${num1} - ${num2} = ? (Type any word to skip): `);
+            let numberAnswer = Number(answer);
+
+            if (isNaN(numberAnswer)) {
+                outs--;
+                console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            } else if (numberAnswer === num1 - num2) {
+                console.log(`Correct! Your score: ${score} + 10 = ${score + 10}. You have ${outs} chance(s) left.\n`);
+                score += 10;
+            } else {
+                outs--;
+                console.log(`Wrong! Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            }
+
+            console.log(`----------------------------\n`);
+        }
+
+        // Multiplication
+        else if (operation === 3) {
+            let answer = prompt(`${questions}) ${num1} * ${num2} = ? (Type any word to skip): `);
+            let numberAnswer = Number(answer);
+
+            if (isNaN(numberAnswer)) {
+                outs--;
+                console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            } else if (numberAnswer === num1 * num2) {
+                console.log(`Correct! Your score: ${score} + 10 = ${score + 10}. You have ${outs} chance(s) left.\n`);
+                score += 10;
+            } else {
+                outs--;
+                console.log(`Wrong! Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            }
+
+            console.log(`----------------------------\n`);
+        }
+
+        // Division
+         else if (operation === 4) {
+            let answer = prompt(`${questions}) ${num1} / ${num2} = ? (Type any word to skip): `);
+            let numberAnswer = Number(answer);
+
+            if (isNaN(numberAnswer)) {
+                outs--;
+                console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            } else if (numberAnswer === (num1 / num2)) { 
+                console.log(`Correct! Your score: ${score} + 10 = ${score + 10}. You have ${outs} chance(s) left.\n`);
+                score += 10;
+            } else {
+                outs--;
+                console.log(`Wrong! Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            }
+
+            console.log(`----------------------------\n`);
+        }
+
+        // Modulus
+        else if (operation === 5) {
+            // Ensure no divide by 0
+            num2 = Math.floor(Math.random() * 9) + 1;
+            num1 = Math.floor(Math.random() * 9) + 1;
+
+            let answer = prompt(`${questions}) ${num1} % ${num2} = ? (Type any word to skip): `);
+            let numberAnswer = Number(answer);
+
+            if (isNaN(numberAnswer)) {
+                outs--;
+                console.log(`Skipped. Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            } else if (numberAnswer === num1 % num2) {
+                console.log(`Correct! Your score: ${score} + 10 = ${score + 10}. You have ${outs} chance(s) left.\n`);
+                score += 10;
+            } else {
+                outs--;
+                console.log(`Wrong! Your score: ${score} + 0 = ${score}. You have ${outs} chance(s) left.\n`);
+            }
+
+            console.log(`----------------------------\n`);
+        }
+    }
+
+    console.log(`That is 3 strikes, Game Over!`);
+    console.log(`\nFinal Score: ${score}`);
+}
+
+
+
         
     
-    else if(difficulty2 === 2){
-        console.log(`You have chosen Medium`)
-    }
-    else if(difficulty2 === 3){
-        console.log(`You have chosen Hard`)
-    }
-    // This else statement is if they do not choose Easy, Medium, or Hard difficulty
-    else{
-        console.log(`That is not a valid option. Please restart.`)
-    }
+
+
+    
+
+    // else if(difficulty2 === 3){
+    //     console.log(`You have chosen Hard`)
+    // }
+    // // This else statement is if they do not choose Easy, Medium, or Hard difficulty
+    // else{
+    //     console.log(`That is not a valid option. Please restart.`)
+    // }
 
 // This else statement is if they do not choose Three Out or Max Score
 //     else{
 //     console.log(`That is not a valid option. Please restart.`)
-// }
+    }
